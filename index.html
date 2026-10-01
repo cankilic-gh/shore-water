@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shore Water</title>
+    <meta name="description" content="An interactive shoreline diorama: a GPU shallow-water simulation with breaking waves, drifting foam and drying sand, explored by a mallard that walks, swims and flaps onto the rocks." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://shorewater.thegridbase.com/" />
+    <meta property="og:title" content="Shore Water" />
+    <meta property="og:description" content="A GPU shallow-water diorama with breaking waves, foam, wet sand and a duck you can drive." />
+    <meta property="og:image" content="https://shorewater.thegridbase.com/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#1b1d21" />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #1b1d21; }
+      canvas { display: block; width: 100%; height: 100%; outline: none; }
+      #hud {
+        position: fixed; left: 12px; bottom: 12px; padding: 8px 12px;
+        font: 500 11px/1.55 'JetBrains Mono', ui-monospace, monospace; color: rgba(255, 255, 255, 0.86);
+        background: rgba(40, 42, 46, 0.78); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 6px;
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); pointer-events: none; white-space: nowrap;
+      }
+      .lil-gui.root { --font-family: 'JetBrains Mono', ui-monospace, monospace; --background-color: rgba(18, 19, 22, 0.92); }
+      @media (max-width: 640px) { #hud { font-size: 9px; left: 8px; bottom: 8px; } }
+      .touch #hud { top: 40px; bottom: auto; left: 8px; }
+      .touch-pad, .touch-jump {
+        position: fixed; bottom: calc(20px + env(safe-area-inset-bottom)); width: 116px; height: 116px; border-radius: 50%;
+        background: rgba(40, 42, 46, 0.45); border: 1px solid rgba(255, 255, 255, 0.1); touch-action: none;
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); user-select: none; -webkit-user-select: none;
+      }
+      .touch-pad { left: 20px; }
+      .touch-knob {
+        position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%;
+        background: rgba(255, 255, 255, 0.82); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); pointer-events: none;
+      }
+      .touch-jump {
+        right: 20px; width: 84px; height: 84px; bottom: calc(36px + env(safe-area-inset-bottom));
+        display: grid; place-items: center; font: 500 11px 'JetBrains Mono', monospace; color: rgba(255, 255, 255, 0.86); letter-spacing: 0.08em;
+      }
+      .touch-jump.active { background: rgba(255, 255, 255, 0.22); }
+    </style>
+    <!-- Google tag (gtag.js) - shared TheGridBase Apps property -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXD0CE5REX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JXD0CE5REX');
+    </script>
+  </head>
+  <body>
+    <div id="hud"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
